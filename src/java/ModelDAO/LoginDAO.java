@@ -23,15 +23,39 @@ public class LoginDAO {
       DBConnection db = new  DBConnection();
       this.conn = db.getConnect();
     }
-    public boolean Login(String user , String Pass) throws SQLException{
-        PreparedStatement pst = conn.prepareStatement("SELECT * FROM `user` WHERE username = ? AND password = MD5(?)");
+    public boolean search(String user) throws SQLException{
+        PreparedStatement pst = conn.prepareStatement("SELECT * FROM `user` WHERE uUsername = ?");
            pst.setString(1, user);
-           pst.setString(2, Pass);
+//           pst.setString(2, Pass);
            rs = pst.executeQuery();
             
          if(rs.next()){            
          return  true;
         }
         return false;
+    }
+    public User signIn(String username, String password) {
+
+        User userSinIn = new User();
+        try {
+            if (search(username)) {
+//                con = db.getConnect();
+                String sql = "SELECT * FROM `user` WHERE uUsername = ? AND uPassword = MD5(?)";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, username);
+                pst.setString(2, password);
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()) {                      
+                userSinIn = new User(rs.getString("uUsername"),rs.getString("uPassword"),rs.getString("uEmail"), rs.getInt("uType"));
+                   
+                }
+                
+                System.out.println(userSinIn);
+                return userSinIn;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

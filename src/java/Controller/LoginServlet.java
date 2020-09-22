@@ -6,6 +6,7 @@
 package Controller;
 
 import ModelDAO.LoginDAO;
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -52,28 +53,28 @@ public class LoginServlet extends HttpServlet {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             LoginDAO lo = new LoginDAO();
-            boolean t = lo.Login(user, pass);
-             if(t){
+            User us = new User();
+            us = lo.signIn(user, pass);
+           if(us == null ){
                //TODO : MAKE forget password
-                //set session for login user
-                 HttpSession session = request.getSession(true);
-                 session.setAttribute("LoginUser", user);
-                 session.setMaxInactiveInterval(60*15);
-                  response.sendRedirect("Welcome.jsp");
-//               if(user.getuRole().equalsIgnoreCase("admin")){
-//                   System.out.println("ADMIN");
-//                   response.sendRedirect("admin/Index.jsp");   //admin
-//               }
-//                   
-//               else {
-//                   System.out.println("NOT");
-//                   response.sendRedirect("index.jsp");
-//               }             
-//               
+               request.setAttribute("message", "Cant't Login <br/> Wrong username or password .. ");
+               
            } else {
             
-               request.setAttribute("message", "Cant't Login <br/> Wrong username or password .. ");
-               getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+            //set session for login user
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", user);
+            session.setMaxInactiveInterval(60*15);
+            
+               if(us.getuType() == 1){
+                   System.out.println("Teacher");
+                   response.sendRedirect("Welcome.jsp");   //admin
+               }
+                   
+               else {
+                   
+                   response.sendRedirect("index.html");
+               }                  //user
            }
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

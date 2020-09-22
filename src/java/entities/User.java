@@ -10,50 +10,52 @@ package entities;
  * @author Admin
  */
 public class User {
-    private String username;
-    private String password;
-    private String email;
-    private int type;
 
     public User() {
     }
 
-    public User(String username, String password, String email, int type) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.type = type;
+    public String getuUsername() {
+        return uUsername;
     }
 
-    public String getUsername() {
-        return username;
+    public void setuUsername(String uUsername) {
+        this.uUsername = uUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getuPassword() {
+        return uPassword;
     }
 
-    public String getPassword() {
-        return password;
+    public void setuPassword(String uPassword) {
+        this.uPassword = uPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getuEmail() {
+        return uEmail;
     }
 
-    public String getEmail() {
-        return email;
+    public void setuEmail(String uEmail) {
+        this.uEmail = uEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public int getuType() {
+        return uType;
     }
 
-    public int getType() {
-        return type;
+    public void setuType(int uType) {
+        this.uType = uType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public User(String uUsername, String uPassword, String uEmail, int uType) {
+        this.uUsername = uUsername;
+        this.uPassword = uPassword;
+        this.uEmail = uEmail;
+        this.uType = uType;
     }
+    private String uUsername;
+    private String uPassword;
+    private String uEmail;
+    private int uType;
+
+
 }

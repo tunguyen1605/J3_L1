@@ -15,7 +15,7 @@
     <body>
             <div class="container-md">
                 <%@include file="header.jsp"%>
-                		<div class="card">
+                		<!--<div class="card">-->
 			<div class="card-header">
 				<h3>Login Form</h3>
 			</div>
@@ -46,7 +46,7 @@
                             </form>
 			</div>
 		</div>
-            </div>
+           
             
         
            

@@ -18,11 +18,12 @@
                      <a class="nav-link" href="login.jsp">
                 Manage Quiz</a>
                   </li>
-            <c:if test="">
+        
+        <c:if test="${!empty user}">
             <li class="nav-item">
-                         <a  class="nav-link" href="../login.jsp">
-                    Logout</a>
-                      </li>
+                     <a class="nav-link" href="login.jsp">
+                Logout</a>
+                  </li>
             </c:if>
            </ul>
 </nav>
