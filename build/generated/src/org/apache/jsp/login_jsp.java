@@ -59,6 +59,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -72,7 +73,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("            <div class=\"container-md\">\n");
-      out.write("                ");
+      out.write("               ");
       out.write("<link href=\"bootstrap-4.5.2-dist/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\">\n");
       out.write("\n");
       out.write("<nav class=\"navbar navbar-expand-sm bg-dark justify-content-center\">\n");
@@ -93,8 +94,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                     <a class=\"nav-link\" href=\"login.jsp\">\n");
       out.write("                Manage Quiz</a>\n");
       out.write("                  </li>\n");
-      out.write("        \n");
-      out.write("        ");
+      out.write("            ");
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\n");
@@ -112,7 +112,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t\t<span class=\"input-group-text\"><i class=\"fas fa-user\"></i></span>\n");
       out.write("\t\t\t\t\t\t</div>\n");
       out.write("                                            <input  name=\"username\" value=\"\" type=\"text\" class=\"form-control\" placeholder=\"username\">\n");
-      out.write("\t\t\t\t\t\t\n");
       out.write("\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t\t<div class=\"input-group form-group\">\n");
       out.write("\t\t\t\t\t\t<div class=\"input-group-prepend\">\n");
@@ -125,7 +124,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Login\" class=\"btn float-right login_btn\">\n");
       out.write("\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t</form>\n");
-      out.write("                            <form action=\"\" method=\"Register\">\n");
+      out.write("                            <form action=\"Register.jsp\" method=\"Register\">\n");
       out.write("                                <div class=\"form-group\">\n");
       out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Register\" class=\"btn float-right login_btn\">\n");
       out.write("\t\t\t\t\t</div>\n");
@@ -161,7 +160,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       do {
         out.write("\n");
         out.write("            <li class=\"nav-item\">\n");
-        out.write("                     <a class=\"nav-link\" href=\"login.jsp\">\n");
+        out.write("                     <a class=\"nav-link\" href=\"logout\">\n");
         out.write("                Logout</a>\n");
         out.write("                  </li>\n");
         out.write("            ");

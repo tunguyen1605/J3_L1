@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import ModelDAO.UsersDAO;
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,18 +35,7 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +50,36 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+            String username = request.getParameter("RegisterUsername");
+            String email = request.getParameter("RegisterEmail");
+            String password = request.getParameter("RegisterPassword");
+            int type;
+            if (request.getParameter("RegisterType").equalsIgnoreCase("student")) {
+                type = 1 ;
+            }else
+                type = 2;
+            
+            //-------------- create user object ------------------
+            User us  = new User();
+            us.setuEmail(email);
+            us.setuPassword(password);
+            us.setuUsername(username);
+            us.setuType(type);
+            
+            UsersDAO user = new UsersDAO();
+            if(user.addUser(us)){
+                request.setAttribute("message", "You signup successfully");
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            }else {
+                request.setAttribute("message", "Cant't Signup <br/> Email or Cridt Card used before .. ");
+                getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
 
     /**
@@ -70,7 +93,8 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        
     }
 
     /**

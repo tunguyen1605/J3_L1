@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +19,7 @@
     </head>
     <body>
             <div class="container-md">
-                <%@include file="header.jsp"%>
+               <%@include file="header.jsp"%>
                 		<!--<div class="card">-->
 			<div class="card-header">
 				<h3>Login Form</h3>
@@ -30,7 +31,6 @@
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
                                             <input  name="username" value="" type="text" class="form-control" placeholder="username">
-						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -43,7 +43,7 @@
 						<input type="submit" value="Login" class="btn float-right login_btn">
 					</div>
 				</form>
-                            <form action="" method="Register">
+                            <form action="Register.jsp" method="Register">
                                 <div class="form-group">
 						<input type="submit" value="Register" class="btn float-right login_btn">
 					</div>

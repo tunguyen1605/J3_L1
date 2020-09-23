@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import ModelDAO.LoginDAO;
+import ModelDAO.UsersDAO;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,13 +52,14 @@ public class LoginServlet extends HttpServlet {
       try {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
-            LoginDAO lo = new LoginDAO();
+            UsersDAO lo = new UsersDAO();
             User us = new User();
             us = lo.signIn(user, pass);
-           if(us == null ){
+           if(us == null){
                //TODO : MAKE forget password
                request.setAttribute("message", "Cant't Login <br/> Wrong username or password .. ");
-               
+                
+            getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
            } else {
             
             //set session for login user
@@ -68,12 +69,12 @@ public class LoginServlet extends HttpServlet {
             
                if(us.getuType() == 1){
                    System.out.println("Teacher");
-                   response.sendRedirect("Welcome.jsp");   //admin
+                   response.sendRedirect("/Welcome.jsp");   //admin
                }
                    
                else {
                    
-                   response.sendRedirect("index.html");
+                   response.sendRedirect("/Welcome.jsp");
                }                  //user
            }
         } catch (SQLException ex) {

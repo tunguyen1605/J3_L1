@@ -15,11 +15,11 @@ import java.sql.SQLException;
  *
  * @author Admin
  */
-public class LoginDAO {
+public class UsersDAO {
    
     Connection conn; 
     ResultSet rs;
-    public LoginDAO() throws SQLException {
+    public UsersDAO() throws SQLException {
       DBConnection db = new  DBConnection();
       this.conn = db.getConnect();
     }
@@ -56,5 +56,22 @@ public class LoginDAO {
             ex.printStackTrace();
         }
         return null;
+    }
+     public boolean addUser(User uss) throws SQLException {
+         boolean b = false;
+         if (!search(uss.getuUsername())) {
+                String sql = "INSERT INTO `user`(`uUsername`, `uPassword`, `uEmail`, `uType`) VALUES (?,MD5(?),?,?)";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, uss.getuUsername());
+                pst.setString(2, uss.getuPassword());
+                pst.setString(3, uss.getuEmail());
+                pst.setInt(4, uss.getuType());
+                pst.executeUpdate();
+                b = true;
+         }else{
+             return b;
+         }
+         
+      return b;
     }
 }

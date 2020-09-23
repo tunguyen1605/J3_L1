@@ -18,10 +18,9 @@
                      <a class="nav-link" href="login.jsp">
                 Manage Quiz</a>
                   </li>
-        
-        <c:if test="${!empty user}">
+            <c:if test="${!empty user}">
             <li class="nav-item">
-                     <a class="nav-link" href="login.jsp">
+                     <a class="nav-link" href="logout">
                 Logout</a>
                   </li>
             </c:if>

@@ -29,7 +29,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user "></i></span>
                         </div>
-                        <input  name="username" value="" type="text" class="form-control" placeholder="username">
+                        <input  name="RegisterUsername" value="" type="text" class="form-control" placeholder="username">
 
                     </div>
                   <br>
@@ -38,15 +38,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input  name="password" value="" type="password" class="form-control" placeholder="password">
-
+                        <input  name="RegisterPassword" value="" type="password" class="form-control" placeholder="password">
                     </div>
                     <br>
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input  name="email" value="" type="email" class="form-control" placeholder="email">
+                        <input  name="RegisterEmail" value="" type="email" class="form-control" placeholder="email">
 
                     </div>
                     <br>
@@ -55,7 +54,7 @@
                             <span class="input-group-text"><i></i></span>
                         </div>
 
-                        <select class="form-control" id="exampleSelect1" name="type">
+                        <select class="form-control" id="exampleSelect1" name="RegisterType">
                             <option>Student</option>
                             <option>Teacher</option>
                         </select>
