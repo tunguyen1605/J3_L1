@@ -69,12 +69,12 @@ public class LoginServlet extends HttpServlet {
             
                if(us.getuType() == 1){
                    System.out.println("Teacher");
-                   response.sendRedirect("/Welcome.jsp");   //admin
+                   response.sendRedirect("Welcome.jsp");   //admin
                }
                    
                else {
                    
-                   response.sendRedirect("/Welcome.jsp");
+                   response.sendRedirect("Welcome.jsp");
                }                  //user
            }
         } catch (SQLException ex) {
