@@ -10,6 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="bootstrap-4.5.2-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <title>Login</title>
     </head>
     <body>
@@ -46,41 +50,5 @@
                             </form>
 			</div>
 		</div>
-           
-            
-        
-           
-           
-<!--            <div class="content">
-                <p class="title-regist">Login Form</p>
-                <form action="LoginServlet" method="POST">
-                    <div class="table">
-                        <div class="table-row">
-                            <div class="table-cell">
-                                <p class="cell-attribute">User Name:</p>
-                            </div>
-                            <div class="table-cell">
-                                <input type="text" class="input" name="username" value="${username}">
-                            </div>
-                        </div>
-                        <div class="table-row">
-                            <div class="table-cell">
-                                <p class="cell-attribute">Password:</p>
-                            </div>
-                            <div class="table-cell">
-                                <input type="password" class="input" name="password">
-                            </div>
-                        </div>
-                        <div class="table-row">
-                            <div class="table-cell">
-                            </div>
-                            <div class="table-cell">
-                                <input type="submit" value="Sign in">
-                                <a href="register.jsp" class="link-register">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>-->
     </body>
 </html>

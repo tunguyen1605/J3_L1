@@ -47,7 +47,6 @@ public class LoginDAO {
                 ResultSet rs = pst.executeQuery();
                 if (rs.next()) {                      
                 userSinIn = new User(rs.getString("uUsername"),rs.getString("uPassword"),rs.getString("uEmail"), rs.getInt("uType"));
-                   
                 }
                 
                 System.out.println(userSinIn);
