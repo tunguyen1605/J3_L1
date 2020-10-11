@@ -83,28 +83,24 @@ public class QuestionDAO {
         return listAnswer;
     }
 
-//    public String getQuestionById(int idQuestion) {
-//        String question = null;
-//        Connection con = null;
-//        DBContext db = new DBContext();
-//        try {
-//            con = db.getConnection();
-//            String sql = "select question from question where questionid = '" + idQuestion + "'";
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                question = rs.getString(1);
-//            }
-//            return question;
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-//
+    public String getQuestionById(int idQuestion) {
+        String question = null;
+        try {
+           
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM `question` WHERE questionid = ?");
+            pst.setInt(1,idQuestion);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                question = rs.getString(1);
+            }
+            return question;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
 //    public String getCorrectAnswer(int questionid) {
-//        Connection con = null;
-//        DBContext db = new DBContext();
 //        try {
 //            con = db.getConnection();
 //            String sql = "select answer from Answer where questionid = '" + questionid + "' and correct = '1'";

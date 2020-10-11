@@ -25,7 +25,7 @@
             </div>
             <div class="card-body">
                 <form action="RegisterServlet" method="Register">
-                    <div class="input-group ">
+                    <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user "></i></span>
                         </div>
