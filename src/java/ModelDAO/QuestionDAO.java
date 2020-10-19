@@ -13,7 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,7 +63,7 @@ public class QuestionDAO {
     }
     public ArrayList<Answer> listAnswer(int idQuestion) {
         ArrayList<Answer> listAnswer = new ArrayList<>();
-         boolean correct;
+         int correct;
                  String answer;
         try {
         PreparedStatement pst = conn.prepareStatement("SELECT * FROM `answer` WHERE questionid = ?");    
@@ -68,13 +71,14 @@ public class QuestionDAO {
         rs = pst.executeQuery();
             while (rs.next()) {
                 answer = rs.getString(1);
-                if (rs.getInt(2) == 1) {
-                     correct = true;
-                }
-                else{
-                     correct = false;
-                }
-                Answer newAnswer = new Answer(answer, correct);
+                correct = rs.getInt(2);
+//                if (rs.getInt(2) == 1) {
+//                     correct = true;
+//                }
+//                else{
+//                     correct = false;
+//                }
+                Answer newAnswer = new Answer(answer, correct, idQuestion);
                 listAnswer.add(newAnswer);
             }
         } catch (SQLException ex) {
@@ -99,6 +103,25 @@ public class QuestionDAO {
         }
         return null;
     }
+    public int getIdByQuestion(String Question) {
+        int idquestion = 0;
+        try {
+           
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM `question` WHERE question = ?");
+            pst.setString(1,Question);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                idquestion = rs.getInt(1);
+            }
+            return idquestion;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+         return 0;
+    }
+//    public boolean insertanswer(String op1,String op2,String op3,String op4,String qusetionid){
+//        
+//    }
     
 //    public String getCorrectAnswer(int questionid) {
 //        try {
@@ -115,4 +138,20 @@ public class QuestionDAO {
 //        }
 //        return null;
 //    }
+    public  int InsertQuestion(String Question , String datecreated){
+        
+         try {
+             PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`questionid`, `question`, `created`) VALUES (?,?)");
+             pst.setString(1,Question);
+             pst.setString(2, datecreated);
+             rs = pst.executeQuery();
+             int questionid =0;
+             questionid = getIdByQuestion(Question);
+             
+             return questionid;
+         } catch (SQLException ex) {
+             Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return 0;
+    }
 }

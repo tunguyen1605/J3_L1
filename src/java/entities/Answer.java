@@ -6,8 +6,24 @@ package entities;
  */
 public class Answer {
 
+    public Answer(String answer, int correct, int questionid) {
+        this.answer = answer;
+        this.correct = correct;
+        this.questionid = questionid;
+    }
+
     private String answer;
-    private boolean correct;
+    private int correct;
+    private int questionid;
+    public int getQuestionid() {
+        return questionid;
+    }
+
+    public void setQuestionid(int questionid) {
+        this.questionid = questionid;
+    }
+    
+    
 
     public Answer() {
     }
@@ -20,15 +36,15 @@ public class Answer {
         this.answer = answer;
     }
 
-    public boolean isCorrect() {
+    public int isCorrect() {
         return correct;
     }
 
-    public void setCorrect(boolean correct) {
+    public void setCorrect(int correct) {
         this.correct = correct;
     }
 
-    public Answer(String answer, boolean correct) {
+    public Answer(String answer, int correct) {
         this.answer = answer;
         this.correct = correct;
     }
