@@ -121,7 +121,7 @@ function ValidatePetSelection()
                             <p>Answers(s): </p>
                         </div>
                         
-                        <div class="table-cell">
+                        <div class="table-row">
                             <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="1">Option1
                             <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="2">Option2
                             <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="3">Option3

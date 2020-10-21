@@ -66,41 +66,44 @@ public class ManagerQuestionServlet extends HttpServlet {
             throws ServletException, IOException {
         ArrayList<Answer> listAnswer = new ArrayList<>();
         int a = Integer.parseInt(request.getParameter("correct"));
-        String op1 = getInitParameter("option1") ;
-        String op2 = getInitParameter("option2") ;
-        String op3 = getInitParameter("option3") ;
-        String op4 = getInitParameter("option4") ;
+        String op1 = request.getParameter("option1") ;
+        String op2 = request.getParameter("option2") ;
+        String op3 = request.getParameter("option3") ;
+        String op4 = request.getParameter("option4") ;
         Answer as = new Answer();
-        String question = getInitParameter("question");
+        String question = request.getParameter("question");
         QuestionDAO qdao = new QuestionDAO();
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
         String strDate = dateFormat.format(date);  
         int idquestion = qdao.InsertQuestion(question, strDate);
         if (a == 1) {
             listAnswer.add(new Answer(op1, 1, idquestion));
-            listAnswer.add(new Answer(op2, 0,  idquestion));
-            listAnswer.add(new Answer(op3, 0, idquestion));
-            listAnswer.add(new Answer(op4, 0, idquestion));
+            listAnswer.add(new Answer(op2, 2,  idquestion));
+            listAnswer.add(new Answer(op3, 2, idquestion));
+            listAnswer.add(new Answer(op4, 2, idquestion));
             
         }else if (a == 2) {
-             listAnswer.add(new Answer(op1, 0, idquestion));
+             listAnswer.add(new Answer(op1, 2, idquestion));
             listAnswer.add(new Answer(op2, 1,  idquestion));
-            listAnswer.add(new Answer(op3, 0, idquestion));
-            listAnswer.add(new Answer(op4, 0, idquestion));
+            listAnswer.add(new Answer(op3, 2, idquestion));
+            listAnswer.add(new Answer(op4, 2, idquestion));
         }
         else if (a == 3) {
-             listAnswer.add(new Answer(op1, 0, idquestion));
-            listAnswer.add(new Answer(op2, 0,  idquestion));
+             listAnswer.add(new Answer(op1, 2, idquestion));
+            listAnswer.add(new Answer(op2, 2,  idquestion));
             listAnswer.add(new Answer(op3, 1, idquestion));
             listAnswer.add(new Answer(op4, 0, idquestion));
         }else
         {
-             listAnswer.add(new Answer(op1, 0, idquestion));
-            listAnswer.add(new Answer(op2, 0,  idquestion));
+             listAnswer.add(new Answer(op1, 2, idquestion));
+            listAnswer.add(new Answer(op2, 2,  idquestion));
             listAnswer.add(new Answer(op3, 1, idquestion));
-            listAnswer.add(new Answer(op4, 0, idquestion));
+            listAnswer.add(new Answer(op4, 2, idquestion));
         }
+        QuestionDAO dAO1 = new QuestionDAO();
+        dAO1.insertanswer(listAnswer);
+        response.sendRedirect("Welcome.jsp");
     }
 
     /**

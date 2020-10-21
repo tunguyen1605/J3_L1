@@ -5,25 +5,24 @@
  */
 package Controller;
 
-import ModelDAO.UsersDAO;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 /**
  *
  * @author Admin
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "Rolemanager", urlPatterns = {"/Rolemanager"})
+public class Rolemanager extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +35,19 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Rolemanager</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Rolemanager at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,39 +62,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      try {
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
-            UsersDAO lo = new UsersDAO();
-            User us = new User();
-            us = lo.signIn(user, pass);
-           if(us == null){
-               //TODO : MAKE forget password
-               request.setAttribute("message", "Cant't Login <br/> Wrong username or password .. ");
+            HttpSession s = request.getSession(false);
+             User us = (User)s.getAttribute("user");
+             if (us.getuType() != 1 ) {
+               response.sendRedirect("managerquestion.jsp");
+        }
+             else{
+                 
+                 request.setAttribute("message", "Cant't Join manager ");
                 
             getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
-           } else {
-            
-            //set session for login user
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", us);
-//            session.setMaxInactiveInterval(60*15);
-            
-               if(us.getuType() == 1){
-                   System.out.println("Teacher");
-                    getServletContext().getRequestDispatcher("/Welcome.jsp").forward(request, response);   //admin
-               }
-                   
-               else {
-                   
-                   response.sendRedirect("Welcome.jsp");
-               }                  //user
-           }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+             }
+   }
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -94,7 +85,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

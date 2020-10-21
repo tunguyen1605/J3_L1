@@ -13,6 +13,14 @@ public class Answer {
     }
 
     private String answer;
+
+    public int getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(int correct) {
+        this.correct = correct;
+    }
     private int correct;
     private int questionid;
     public int getQuestionid() {
@@ -34,14 +42,6 @@ public class Answer {
 
     public void setAnswer(String answer) {
         this.answer = answer;
-    }
-
-    public int isCorrect() {
-        return correct;
-    }
-
-    public void setCorrect(int correct) {
-        this.correct = correct;
     }
 
     public Answer(String answer, int correct) {

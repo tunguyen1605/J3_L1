@@ -26,13 +26,13 @@
             <div class="content ">
                 <h2 class="h1-responsive font-weight-bold text-center my-4">Wellcome
                     <!--BUG-->
-                    <span class="animated ">${sessionScope.user}</span>
+                    <span class="animated ">${sessionScope.user.getuUsername()}</span>
                 </h2>
                 <form action="TakeQuizServlet" method="POST">
 
                     <div class="form-group">
                         <label for="exampleSelect1" class="bmd-label-floating">Choose number of question</label>
-                        <select class="form-control" id="exampleSelect1">
+                        <select class="form-control" id="exampleSelect1" name="numberQuestion">
                             <option>5</option>
                             <option>10</option>
                             <option>15</option>

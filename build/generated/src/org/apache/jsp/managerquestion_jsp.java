@@ -160,11 +160,11 @@ public final class managerquestion_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("                            <p>Answers(s): </p>\n");
       out.write("                        </div>\n");
       out.write("                        \n");
-      out.write("                        <div class=\"table-cell\">\n");
-      out.write("                            <input type=\"checkbox\" name=\"correct1\" onclick=\"return ValidatePetSelection();\" value=\"1\">Option1\n");
-      out.write("                            <input type=\"checkbox\" name=\"correct2\" onclick=\"return ValidatePetSelection();\" value=\"2\">Option2\n");
-      out.write("                            <input type=\"checkbox\" name=\"correct3\" onclick=\"return ValidatePetSelection();\" value=\"3\">Option3\n");
-      out.write("                            <input type=\"checkbox\" name=\"correct4\" onclick=\"return ValidatePetSelection();\" value=\"4\">Option4\n");
+      out.write("                        <div class=\"table-row\">\n");
+      out.write("                            <input type=\"checkbox\" name=\"correct\" onclick=\"return ValidatePetSelection();\" value=\"1\">Option1\n");
+      out.write("                            <input type=\"checkbox\" name=\"correct\" onclick=\"return ValidatePetSelection();\" value=\"2\">Option2\n");
+      out.write("                            <input type=\"checkbox\" name=\"correct\" onclick=\"return ValidatePetSelection();\" value=\"3\">Option3\n");
+      out.write("                            <input type=\"checkbox\" name=\"correct\" onclick=\"return ValidatePetSelection();\" value=\"4\">Option4\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"table-row\">\n");

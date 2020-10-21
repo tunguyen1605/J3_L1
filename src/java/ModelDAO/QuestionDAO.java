@@ -29,7 +29,7 @@ public class QuestionDAO {
        DBConnection db = new  DBConnection();
       this.conn = db.getConnect();
     }
-    public ArrayList<Question> listQuestion(String username) {
+    public ArrayList<Question> listQuestion() {
         ArrayList<Question> listQuestion = new ArrayList<>();
         try {
             
@@ -48,7 +48,7 @@ public class QuestionDAO {
         }
         return listQuestion;
     }
-      public int countQuesion(String username) {
+      public int countQuesion() {
         try {
            PreparedStatement pst = conn.prepareStatement("SELECT COUNT(*) FROM `question` WHERE 1");    
            rs = pst.executeQuery();
@@ -95,7 +95,7 @@ public class QuestionDAO {
             pst.setInt(1,idQuestion);
             rs = pst.executeQuery();
             while (rs.next()) {
-                question = rs.getString(1);
+                question = rs.getString(2);
             }
             return question;
         } catch (SQLException ex) {
@@ -119,9 +119,24 @@ public class QuestionDAO {
         }
          return 0;
     }
-//    public boolean insertanswer(String op1,String op2,String op3,String op4,String qusetionid){
-//        
-//    }
+    public boolean insertanswer(ArrayList<Answer> list) {
+        
+      
+            try {
+                  for (Answer answer : list) {
+                PreparedStatement pst = conn.prepareStatement("INSERT INTO `answer`(`answer`, `correct`, `questionid`) VALUES (?,?,?)");
+                pst.setString(1,answer.getAnswer());
+                pst.setInt(2, answer.getCorrect());
+                pst.setInt(3, answer.getQuestionid());
+                pst.executeUpdate();
+                        }
+                  return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        return false;
+    }
     
 //    public String getCorrectAnswer(int questionid) {
 //        try {
@@ -141,10 +156,10 @@ public class QuestionDAO {
     public  int InsertQuestion(String Question , String datecreated){
         
          try {
-             PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`questionid`, `question`, `created`) VALUES (?,?)");
+             PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`question`, `created`) VALUES (?,?)");
              pst.setString(1,Question);
              pst.setString(2, datecreated);
-             rs = pst.executeQuery();
+             pst.executeUpdate();
              int questionid =0;
              questionid = getIdByQuestion(Question);
              
@@ -154,4 +169,5 @@ public class QuestionDAO {
          }
          return 0;
     }
+
 }
