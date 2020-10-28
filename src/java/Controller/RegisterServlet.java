@@ -73,7 +73,7 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("message", "You signup successfully");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
             }else {
-                request.setAttribute("message", "Cant't Signup <br/> Email or Cridt Card used before .. ");
+                request.setAttribute("message", "Cant't Signup <br/> Email or Username used before .. ");
                 getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
             }
         } catch (SQLException ex) {

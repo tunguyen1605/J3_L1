@@ -1,8 +1,4 @@
-<%-- 
-    Document   : login
-    Created on : Aug 19, 2018, 9:24:30 PM
-    Author     : Thaycacac
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

@@ -1,8 +1,4 @@
-<%-- 
-Document   : playquiz
-Created on : Aug 19, 2018, 10:18:22 PM
-Author     : Thaycacac
---%>
+
 
 <%@page import="java.util.Random"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -49,10 +45,10 @@ Author     : Thaycacac
         <h2 class="text-left"><%= question%></h2>
         <form action="CheckResultServlet" method="POST" class="card-body">
             <c:forEach var="Answer" items="<%= listAnswer%>">
-                <input type="checkbox" class="form-check form-check-inline h3" name="answer" value="${Answer.answer}">
+                  <input type="checkbox" class="form-check form-check-inline h3" name="answer" value="${Answer.answer}">
                 <span class="value-check-box">${Answer.answer} </span><br>
             </c:forEach>
-<!--                <input type="hidden" name="questionid" value="<%= randomQuestion %>">-->
+                <input type="hidden" name="questionid" value="<%= randomQuestion %>">
             <input type="submit" value="Next" class="submit-content">
         </form>
     </div>

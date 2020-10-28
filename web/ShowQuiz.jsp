@@ -1,8 +1,4 @@
-<%-- 
-    Document   : listquestion
-    Created on : Aug 19, 2018, 10:37:03 PM
-    Author     : Thaycacac
---%>
+
 
 <%@page import="entities.Question"%>
 <%@page import="java.util.ArrayList"%>

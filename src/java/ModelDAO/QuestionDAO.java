@@ -138,36 +138,50 @@ public class QuestionDAO {
         return false;
     }
     
-//    public String getCorrectAnswer(int questionid) {
-//        try {
-//            con = db.getConnection();
-//            String sql = "select answer from Answer where questionid = '" + questionid + "' and correct = '1'";
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                String answerCorrect = rs.getString(1);
-//                return answerCorrect;
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
+    public String getCorrectAnswer(int questionid) {
+        try {
+            try {
+                String sql = "select answer from Answer where questionid = '" + questionid + "' and correct = '1'";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    String answerCorrect = rs.getString(1);
+                    conn.close();
+                    return answerCorrect;
+                    
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            conn.close();
+       
+        } catch (SQLException ex) {
+             Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             return null;
+    }
     public  int InsertQuestion(String Question , String datecreated){
         
          try {
-             PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`question`, `created`) VALUES (?,?)");
-             pst.setString(1,Question);
-             pst.setString(2, datecreated);
-             pst.executeUpdate();
-             int questionid =0;
-             questionid = getIdByQuestion(Question);
              
-             return questionid;
+             try {
+                 PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`question`, `created`) VALUES (?,?)");
+                 pst.setString(1,Question);
+                 pst.setString(2, datecreated);
+                 pst.executeUpdate();
+                 int questionid =0;
+                 questionid = getIdByQuestion(Question);
+                 conn.close();
+                 return questionid;
+             } catch (SQLException ex) {
+                 Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             conn.close();
+            
          } catch (SQLException ex) {
              Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
          }
-         return 0;
+          return 0;
     }
 
 }

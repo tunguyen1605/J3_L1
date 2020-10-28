@@ -1,8 +1,4 @@
-<%-- 
-    Document   : wellcome
-    Created on : Aug 19, 2018, 9:51:02 PM
-    Author     : Thaycacac
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,8 +14,6 @@
     </head>
     <body>
         <div class="container">
-
-
         </div>
         <div class="container">
             <%@include file="header.jsp"%>

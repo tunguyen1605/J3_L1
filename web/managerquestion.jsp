@@ -1,8 +1,3 @@
-<%-- 
-    Document   : managerquestion
-    Created on : Aug 19, 2018, 11:03:43 PM
-    Author     : Thaycacac
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

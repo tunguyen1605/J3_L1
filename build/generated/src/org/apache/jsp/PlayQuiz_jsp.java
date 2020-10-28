@@ -99,12 +99,13 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write('\n');
       out.write("\n");
       out.write("    <div class=\"content\">\n");
-      out.write("        <p class=\"title-wellcome\">Wellcome\n");
-      out.write("            <span class=\"name\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScop.user.getuUsername()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("        <h2 class=\"h1-responsive font-weight-bold text-center my-4\">Wellcome\n");
+      out.write("                    <!--BUG-->\n");
+      out.write("                    <span class=\"animated \">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.user.getuUsername()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</span>\n");
-      out.write("        </p>\n");
-      out.write("        <p class=\"time\">Time remaining: <span>10:03</span></p>\n");
+      out.write("                </h2>\n");
+      out.write("        <h3 class=\"time text-left\" >Time remaining <span>10:03</span></h3>\n");
       out.write("        ");
       out.write("\n");
       out.write("        ");
@@ -118,10 +119,10 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
             listAnswer = questionDao.listAnswer(randomQuestion);
         
       out.write("\n");
-      out.write("        <p class=\"text-content\">");
+      out.write("        <h2 class=\"text-left\">");
       out.print( question);
-      out.write("</p>\n");
-      out.write("        <form action=\"CheckResultServlet\" method=\"POST\">\n");
+      out.write("</h2>\n");
+      out.write("        <form action=\"CheckResultServlet\" method=\"POST\" class=\"card-body\">\n");
       out.write("            ");
       //  c:forEach
       org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
@@ -135,9 +136,9 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
         if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
             out.write("\n");
-            out.write("                <input type=\"checkbox\" class=\"form-check form-check-inline\" name=\"answer\" value=\"");
+            out.write("<!--                <input type=\"checkbox\" class=\"form-check form-check-inline h3\" name=\"answer\" value=\"");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${Answer.answer}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("\">\n");
+            out.write("\">-->\n");
             out.write("                <span class=\"value-check-box\">");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${Answer.answer}", java.lang.String.class, (PageContext)_jspx_page_context, null));
             out.write(" </span><br>\n");
@@ -159,9 +160,9 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
         _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
       }
       out.write("\n");
-      out.write("<!--                <input type=\"hidden\" name=\"questionid\" value=\"");
+      out.write("                <input type=\"hidden\" name=\"questionid\" value=\"");
       out.print( randomQuestion );
-      out.write("\">-->\n");
+      out.write("\">\n");
       out.write("            <input type=\"submit\" value=\"Next\" class=\"submit-content\">\n");
       out.write("        </form>\n");
       out.write("    </div>\n");
