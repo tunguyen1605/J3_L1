@@ -17,8 +17,33 @@
         <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="myStyle.css" rel="stylesheet">
 <title>Play Quiz</title>
+<script>
+  
+   $("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+  
+   </script>
+   <script>
+           function myFunction() {
+  document.getElementById("myCheck").required = true;
+  document.getElementById("demo").innerHTML = "The required property was set. The checkbox must now be checked before submitting the form.";
+}
+           </script>
 </head>
 <body>
+    
 <div class="container">
     <%@include file="header.jsp"%>
     <div class="content">
@@ -45,11 +70,11 @@
         <h2 class="text-left"><%= question%></h2>
         <form action="CheckResultServlet" method="POST" class="card-body">
             <c:forEach var="Answer" items="<%= listAnswer%>">
-                  <input type="checkbox" class="form-check form-check-inline h3" name="answer" value="${Answer.answer}">
+                <input type="checkbox" class="form-check form-check-inline h3" id="myCheck" name="answer" value="${Answer.answer}">
                 <span class="value-check-box">${Answer.answer} </span><br>
             </c:forEach>
                 <input type="hidden" name="questionid" value="<%= randomQuestion %>">
-            <input type="submit" value="Next" class="submit-content">
+                <button  onclick="myFunction()"></button>
         </form>
     </div>
 </div>

@@ -31,43 +31,21 @@ function ValidatePetSelection()
     }  
 }  
 </script>
-<!--<form method="post" action="/Tests/Post">  
-    <fieldset>  
-    <legend>What is Your Favorite Pet?</legend>  
-    <input type="checkbox" name="favorite_pet" value="Cats" onclick="return ValidatePetSelection();">Cats<br>  
-    <input type="checkbox" name="favorite_pet" value="Dogs" onclick="return ValidatePetSelection();">Dogs<br>  
-    <input type="checkbox" name="favorite_pet" value="Birds" onclick="return ValidatePetSelection();">Birds<br>  
-        <br>  
-    <input type="submit" value="Submit now">  
-    </fieldset>  
-</form>  -->
+<script type="text/javascript">
+    jQuery(function($) {
+  var requiredCheckboxes = $(':checkbox[required]');
+  requiredCheckboxes.on('change', function(e) {
+    var checkboxGroup = requiredCheckboxes.filter('[name="' + $(this).attr('name') + '"]');
+    var isChecked = checkboxGroup.is(':checked');
+    checkboxGroup.prop('required', !isChecked);
+  });
+  requiredCheckboxes.trigger('change');
+});
+</script>
         <title>Manager Question</title>
     </head>
     <body>
         <div class="container">
-        <nav>
-            <ul class="my-nav">
-                <li>
-                    <a href="">Home</a>
-                </li>
-                <li>
-                    <a href="">
-                        Take Quiz</a>
-                </li>
-                <li>
-                    <a href="">
-                        Make Quiz</a>
-                </li>
-                <li>
-                    <a href="">
-                        Manage Quiz</a>
-                </li>
-                <li>
-                    <a href="">
-                        Log out</a>
-                </li>
-            </ul>
-        </nav>
         <div class="content">
             <form action="ManagerQuestionServlet">
                 <div class="table">
@@ -117,10 +95,10 @@ function ValidatePetSelection()
                         </div>
                         
                         <div class="table-row">
-                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="1">Option1
-                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="2">Option2
-                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="3">Option3
-                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="4">Option4
+                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="1"required="required">Option1
+                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="2" required="required">Option2
+                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="3" required="required">Option3
+                            <input type="checkbox" name="correct" onclick="return ValidatePetSelection();" value="4" required="required">Option4
                         </div>
                     </div>
                     <div class="table-row">

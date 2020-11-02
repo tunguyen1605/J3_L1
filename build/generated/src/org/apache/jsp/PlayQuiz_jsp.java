@@ -88,8 +88,33 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <link href=\"bootstrap-4.5.2-dist/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\">\n");
       out.write("<link href=\"myStyle.css\" rel=\"stylesheet\">\n");
       out.write("<title>Play Quiz</title>\n");
+      out.write("<script>\n");
+      out.write("  \n");
+      out.write("   $(\"input:checkbox\").on('click', function() {\n");
+      out.write("  // in the handler, 'this' refers to the box clicked on\n");
+      out.write("  var $box = $(this);\n");
+      out.write("  if ($box.is(\":checked\")) {\n");
+      out.write("    // the name of the box is retrieved using the .attr() method\n");
+      out.write("    // as it is assumed and expected to be immutable\n");
+      out.write("    var group = \"input:checkbox[name='\" + $box.attr(\"name\") + \"']\";\n");
+      out.write("    // the checked state of the group/box on the other hand will change\n");
+      out.write("    // and the current value is retrieved using .prop() method\n");
+      out.write("    $(group).prop(\"checked\", false);\n");
+      out.write("    $box.prop(\"checked\", true);\n");
+      out.write("  } else {\n");
+      out.write("    $box.prop(\"checked\", false);\n");
+      out.write("  }\n");
+      out.write("  \n");
+      out.write("   </script>\n");
+      out.write("   <script>\n");
+      out.write("           function myFunction() {\n");
+      out.write("  document.getElementById(\"myCheck\").required = true;\n");
+      out.write("  document.getElementById(\"demo\").innerHTML = \"The required property was set. The checkbox must now be checked before submitting the form.\";\n");
+      out.write("}\n");
+      out.write("           </script>\n");
       out.write("</head>\n");
       out.write("<body>\n");
+      out.write("    \n");
       out.write("<div class=\"container\">\n");
       out.write("    ");
       out.write("<link href=\"bootstrap-4.5.2-dist/css/bootstrap.css\" rel=\"stylesheet\" type=\"text/css\">\n");
@@ -136,9 +161,10 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
         if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
           do {
             out.write("\n");
-            out.write("<!--                <input type=\"checkbox\" class=\"form-check form-check-inline h3\" name=\"answer\" value=\"");
+            out.write("                <input type=\"checkbox\" class=\"form-check form-check-inline h3\" id=\"myCheck\" name=\"answer\" value=\"");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${Answer.answer}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-            out.write("\">-->\n");
+            out.write("\">\n");
+            out.write("                 \n");
             out.write("                <span class=\"value-check-box\">");
             out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${Answer.answer}", java.lang.String.class, (PageContext)_jspx_page_context, null));
             out.write(" </span><br>\n");
@@ -163,7 +189,7 @@ public final class PlayQuiz_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <input type=\"hidden\" name=\"questionid\" value=\"");
       out.print( randomQuestion );
       out.write("\">\n");
-      out.write("            <input type=\"submit\" value=\"Next\" class=\"submit-content\">\n");
+      out.write("                <button  onclick=\"myFunction()\"></button>\n");
       out.write("        </form>\n");
       out.write("    </div>\n");
       out.write("</div>\n");
