@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             UsersDAO lo = new UsersDAO();
             User us = new User();
             us = lo.signIn(user, pass);
-           if(us == null){
+           if(us==null){
                //TODO : MAKE forget password
                request.setAttribute("message", "Cant't Login <br/> Wrong username or password .. ");
                 

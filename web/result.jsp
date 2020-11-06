@@ -1,5 +1,7 @@
 
 
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,8 +35,16 @@
                 </li>
             </ul>
         </nav>-->
-        <div class="content">
+<form action="Welcome.jsp">
+     <div class="content">
             <p class="title-wellcome">Your score
+                <%
+                    int anwerCorrectCurrent = (int)getServletContext().getAttribute("answerCorrect");
+                    int numberQuestion = (int)getServletContext().getAttribute("numberQuestion");
+                    double result = (double)anwerCorrectCurrent / numberQuestion * 100;
+                      NumberFormat formatter = new DecimalFormat("#0.00"); 
+                     getServletContext().setAttribute("result", formatter.format(result));
+                %>
                 <span class="name">${result/10} (${result}%) - ${result <= 50.0 ? "Not Pass" : "Passed"}</span>
             </p>
             <p class="text-content">Take another test
@@ -43,6 +53,7 @@
                 </a>
             </p>
         </div>
+</form>
     </div>
     </body>
 </html>

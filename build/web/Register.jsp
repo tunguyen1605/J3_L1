@@ -32,6 +32,7 @@
                             required: true,
                             minlength: 8,
                             maxlength: 30
+                           
                         },
                         /**
                          * check password input cannot null, min length 8 and max length 30, 
@@ -55,7 +56,8 @@
                         RegisterUsername: {
                             required: "Please enter username",
                             minlength: "Username must be greater than 8 characters",
-                            maxlength: "Username must be smailler than 30 characters"
+                            maxlength: "Username must be smailler than 30 characters",
+                 
                         },
                         //message warning input password
                         RegisterPassword: {
@@ -65,7 +67,7 @@
                             checkpass: "Password must be has a uppercase letter , has a digit and special characters !"
                         },
                         //message warning input email
-                        RegisterUsername: {
+                        RegisterEmail: {
                             required: "Please enter email",
                             checkemail: "Email invalid please enter again "
                         }
@@ -80,6 +82,7 @@
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; // regex check email
                     return emailReg.test(value);
                 });
+                
               
 
 

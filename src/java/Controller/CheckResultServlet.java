@@ -26,6 +26,9 @@ public class CheckResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String check = request.getParameter("answer");
+        if (check==null) {
+            check="";
+        }
         int questionid = Integer.parseInt(request.getParameter("questionid"));
         QuestionDAO questionDAO = new QuestionDAO();
         String answerCorrect = questionDAO.getCorrectAnswer(questionid);
@@ -46,9 +49,7 @@ public class CheckResultServlet extends HttpServlet {
         }
         //update number anwser correct by user
         getServletContext().setAttribute("answerCorrect", anwerCorrectCurrent);
-        double result = (double)anwerCorrectCurrent / numberQuestion * 100;
-        NumberFormat formatter = new DecimalFormat("#0.00"); 
-        getServletContext().setAttribute("result", formatter.format(result));
+        
         request.getRequestDispatcher("PlayQuiz.jsp").forward(request, response);
     }
 

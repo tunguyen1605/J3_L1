@@ -15,32 +15,11 @@
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        
 <link href="myStyle.css" rel="stylesheet">
 <title>Play Quiz</title>
-<script>
-  
-   $("input:checkbox").on('click', function() {
-  // in the handler, 'this' refers to the box clicked on
-  var $box = $(this);
-  if ($box.is(":checked")) {
-    // the name of the box is retrieved using the .attr() method
-    // as it is assumed and expected to be immutable
-    var group = "input:checkbox[name='" + $box.attr("name") + "']";
-    // the checked state of the group/box on the other hand will change
-    // and the current value is retrieved using .prop() method
-    $(group).prop("checked", false);
-    $box.prop("checked", true);
-  } else {
-    $box.prop("checked", false);
-  }
-  
-   </script>
-   <script>
-           function myFunction() {
-  document.getElementById("myCheck").required = true;
-  document.getElementById("demo").innerHTML = "The required property was set. The checkbox must now be checked before submitting the form.";
-}
-           </script>
+
+
 </head>
 <body>
     
@@ -74,9 +53,29 @@
                 <span class="value-check-box">${Answer.answer} </span><br>
             </c:forEach>
                 <input type="hidden" name="questionid" value="<%= randomQuestion %>">
-                <button  onclick="myFunction()"></button>
+                <button  onclick="myFunction()">Next</button>
         </form>
     </div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    // the selector will match all input controls of type :checkbox
+// and attach a click event handler 
+$("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>
 </div>
 </body>
 </html>

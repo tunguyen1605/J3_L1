@@ -54,7 +54,7 @@ function ValidatePetSelection()
                             <p>Question:</p>
                         </div>
                         <div class="table-cell">
-                            <textarea name="question" cols="60" rows="7" placeholder="Please Enter Your Question"></textarea>
+                            <textarea name="question" cols="60" rows="7" placeholder="Please Enter Your Question" required="required"></textarea>
                         </div>
                     </div>
                     <div class="table-row">
@@ -62,7 +62,7 @@ function ValidatePetSelection()
                             <p>Option1: </p>
                         </div>
                         <div class="table-cell">
-                            <textarea name="option1" cols="60" rows="3" placeholder="Answer"></textarea>
+                            <textarea name="option1" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                         </div>
                     </div>
                     <div class="table-row">
@@ -70,7 +70,7 @@ function ValidatePetSelection()
                             <p>Option2: </p>
                         </div>
                         <div class="table-cell">
-                            <textarea name="option2" cols="60" rows="3" placeholder="Answer"></textarea>
+                            <textarea name="option2" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                         </div>
                     </div>
                     <div class="table-row">
@@ -78,7 +78,7 @@ function ValidatePetSelection()
                             <p>Option3: </p>
                         </div>
                         <div class="table-cell">
-                            <textarea name="option3" cols="60" rows="3" placeholder="Answer" ></textarea>
+                            <textarea name="option3" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                         </div>
                     </div>
                     <div class="table-row">
@@ -86,7 +86,7 @@ function ValidatePetSelection()
                             <p>Option4: </p>
                         </div>
                         <div class="table-cell">
-                            <textarea name="option4" class="question" cols="60" rows="3" placeholder="Answer"></textarea>
+                            <textarea name="option4" class="question" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                         </div>
                     </div>
                     <div class="table-row">
