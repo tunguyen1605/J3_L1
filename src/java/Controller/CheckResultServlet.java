@@ -37,8 +37,16 @@ public class CheckResultServlet extends HttpServlet {
         int numberAnswer = (int) getServletContext().getAttribute("numberAnswer");
         int numberQuestion = (int) getServletContext().getAttribute("numberQuestion");
         numberAnswer++;
+       
         //check if user done all question
         if (numberAnswer == numberQuestion) {
+            if (check.equals(answerCorrect)) {
+            anwerCorrectCurrent++;
+             getServletContext().setAttribute("answerCorrect", anwerCorrectCurrent);
+         double result = (double)anwerCorrectCurrent / numberQuestion * 100;
+        NumberFormat formatter = new DecimalFormat("#0.00"); 
+        getServletContext().setAttribute("result", formatter.format(result));
+            }
             request.getRequestDispatcher("result.jsp").forward(request, response);
         }
         //update number question user done
@@ -47,10 +55,14 @@ public class CheckResultServlet extends HttpServlet {
         if (check.equals(answerCorrect)) {
             anwerCorrectCurrent++;
         }
+                   
         //update number anwser correct by user
         getServletContext().setAttribute("answerCorrect", anwerCorrectCurrent);
-        
-        request.getRequestDispatcher("PlayQuiz.jsp").forward(request, response);
+         double result = (double)anwerCorrectCurrent / numberQuestion * 100;
+        NumberFormat formatter = new DecimalFormat("#0.00"); 
+        getServletContext().setAttribute("result", formatter.format(result));
+          getServletContext().getRequestDispatcher("/PlayQuiz.jsp").forward(request, response);   //admin
+//        request.getRequestDispatcher("").forward(request, response);
     }
 
     @Override

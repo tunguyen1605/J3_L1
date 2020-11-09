@@ -93,7 +93,7 @@ public class ManagerQuestionServlet extends HttpServlet {
              listAnswer.add(new Answer(op1, 2, idquestion));
             listAnswer.add(new Answer(op2, 2,  idquestion));
             listAnswer.add(new Answer(op3, 1, idquestion));
-            listAnswer.add(new Answer(op4, 0, idquestion));
+            listAnswer.add(new Answer(op4, 2, idquestion));
         }else
         {
              listAnswer.add(new Answer(op1, 2, idquestion));

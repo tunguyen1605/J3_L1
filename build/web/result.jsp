@@ -44,13 +44,7 @@
        <div class="container-md  ">
                 <div class="content">
                     <h1 class="title-wellcome ">Your score:
-                <%
-                    int anwerCorrectCurrent = (int)getServletContext().getAttribute("answerCorrect");
-                    int numberQuestion = (int)getServletContext().getAttribute("numberQuestion");
-                    double result = (double)anwerCorrectCurrent / numberQuestion * 100;
-                      NumberFormat formatter = new DecimalFormat("#0.00"); 
-                     getServletContext().setAttribute("result", formatter.format(result));
-                %>
+                
                 <span class="name">${result/10} (${result}%)${result <= 50.0 ? "<div class='alert alert-danger'>Not Pass</div>" : "<div class=  'alert alert-success'>Pass</div>"}</span>
             </h1>
             <p class="text-content">Take another test

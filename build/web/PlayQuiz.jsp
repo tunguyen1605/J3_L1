@@ -42,7 +42,7 @@
 //            username = (String) request.getSession().getAttribute("nameUser");
             countAnswer = questionDao.countQuesion();
             Random ran = new Random();
-            int randomQuestion = ran.nextInt(countAnswer)+2;
+            int randomQuestion = ran.nextInt(countAnswer)+1;
             question = questionDao.getQuestionById(randomQuestion);
             listAnswer = questionDao.listAnswer(randomQuestion);
         %>
