@@ -14,12 +14,19 @@
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="myStyle.css" rel="stylesheet">
+        <%
+    if (session.getAttribute("user") != null) {
+        
+    } else {
+        response.sendRedirect("login.jsp");
+    }
+%>
         <title>List Question</title>
     </head>
     <body>
         
         <div class="container-md">
-               
+             <%@include file="header.jsp" %>
                 		<!--<div class="card">-->
 			<div class="card-header">
 				<h3>Quiz Manager</h3>

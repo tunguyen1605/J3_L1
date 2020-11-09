@@ -53,7 +53,7 @@
                 <span class="value-check-box">${Answer.answer} </span><br>
             </c:forEach>
                 <input type="hidden" name="questionid" value="<%= randomQuestion %>">
-                <button  onclick="myFunction()">Next</button>
+                <button   class="btn btn-success" onclick="myFunction()">Next</button>
         </form>
     </div>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

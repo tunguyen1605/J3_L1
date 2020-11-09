@@ -12,7 +12,7 @@
 
                 <div class="alert alert-danger">
                     <strong>${message}</strong> 
-                    <p style="cursor: pointer"><a href="login.jsp">Comback</a></p>
+                    <p style="cursor: pointer"><a href="Welcome.jsp">Comback</a></p>
                 </div>
 
             </div>

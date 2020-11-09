@@ -33,16 +33,18 @@
                                             <input  name="password" value="" type="password" class="form-control" placeholder="password">
                                                 
 					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+					<div class="form-group ">
+						<input type="submit" value="Login" class="btn float-right login_btn btn-dark">
 					</div>
 				</form>
                             <form action="Register.jsp" method="Register">
-                                <div class="form-group">
-						<input type="submit" value="Register" class="btn float-right login_btn">
+                                      <div class="form-group">
+						<input type="submit" value="Register" class="btn float-right login_btn btn-dark">
 					</div>
                             </form>
 			</div>
 		</div>
+       
+
     </body>
 </html>

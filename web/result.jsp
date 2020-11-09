@@ -8,6 +8,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="myStyle.css" rel="stylesheet">
+          <link href="bootstrap-4.5.2-dist/css/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
+        <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <title>Result</title>
     </head>
     <body>
@@ -36,8 +40,10 @@
             </ul>
         </nav>-->
 <form action="Welcome.jsp">
-     <div class="content">
-            <p class="title-wellcome">Your score
+     
+       <div class="container-md  ">
+                <div class="content">
+                    <h1 class="title-wellcome ">Your score:
                 <%
                     int anwerCorrectCurrent = (int)getServletContext().getAttribute("answerCorrect");
                     int numberQuestion = (int)getServletContext().getAttribute("numberQuestion");
@@ -45,14 +51,15 @@
                       NumberFormat formatter = new DecimalFormat("#0.00"); 
                      getServletContext().setAttribute("result", formatter.format(result));
                 %>
-                <span class="name">${result/10} (${result}%) - ${result <= 50.0 ? "Not Pass" : "Passed"}</span>
-            </p>
+                <span class="name">${result/10} (${result}%)${result <= 50.0 ? "<div class='alert alert-danger'>Not Pass</div>" : "<div class=  'alert alert-success'>Pass</div>"}</span>
+            </h1>
             <p class="text-content">Take another test
-                <a href="PlayQuiz.jsp">
-                    <input type="submit" value="Start">
+                <a href="Welcome.jsp">
+                    <input class="btn btn-success"type="submit" value="Start">
                 </a>
             </p>
         </div>
+            </div>
 </form>
     </div>
     </body>

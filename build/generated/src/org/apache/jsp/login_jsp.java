@@ -76,17 +76,19 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            <input  name=\"password\" value=\"\" type=\"password\" class=\"form-control\" placeholder=\"password\">\n");
       out.write("                                                \n");
       out.write("\t\t\t\t\t</div>\n");
-      out.write("\t\t\t\t\t<div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Login\" class=\"btn float-right login_btn\">\n");
+      out.write("\t\t\t\t\t<div class=\"form-group \">\n");
+      out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Login\" class=\"btn float-right login_btn btn-dark\">\n");
       out.write("\t\t\t\t\t</div>\n");
       out.write("\t\t\t\t</form>\n");
       out.write("                            <form action=\"Register.jsp\" method=\"Register\">\n");
-      out.write("                                <div class=\"form-group\">\n");
-      out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Register\" class=\"btn float-right login_btn\">\n");
+      out.write("                                      <div class=\"form-group\">\n");
+      out.write("\t\t\t\t\t\t<input type=\"submit\" value=\"Register\" class=\"btn float-right login_btn btn-dark\">\n");
       out.write("\t\t\t\t\t</div>\n");
       out.write("                            </form>\n");
       out.write("\t\t\t</div>\n");
       out.write("\t\t</div>\n");
+      out.write("       \n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

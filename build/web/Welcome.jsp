@@ -10,6 +10,13 @@
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <%
+    if (session.getAttribute("user") != null) {
+        
+    } else {
+        response.sendRedirect("login.jsp");
+    }
+%>
         <title>Wellcome</title>
     </head>
     <body>
