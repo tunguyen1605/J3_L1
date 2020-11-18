@@ -26,13 +26,13 @@
 <div class="container">
     <%@include file="header.jsp"%>
     <div class="content">
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Wellcome
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Welcome
                     <!--BUG-->
                     <span class="animated ">${sessionScope.user.getuUsername()}</span>
                 </h2>
-        <h3 class="time text-left" >Time remaining <span>10:03</span></h3>
+<!--        <h3 class="time text-left" >Time remaining <span>10:03</span></h3>-->
         <%!
-            String question;
+            ArrayList<String> question;
             ArrayList<Answer> listAnswer;
             int countAnswer;
             String username;
@@ -42,17 +42,33 @@
 //            username = (String) request.getSession().getAttribute("nameUser");
             countAnswer = questionDao.countQuesion();
             Random ran = new Random();
-            int randomQuestion = ran.nextInt(countAnswer)+1;
-            question = questionDao.getQuestionById(randomQuestion);
-            listAnswer = questionDao.listAnswer(randomQuestion);
+            if (session.getAttribute("listquestion") == null) {
+                     question = questionDao.getQuestionById();
+                     session.setAttribute("listquestion", question);
+                }
+            else{
+                question = (ArrayList<String>)session.getAttribute("listquestion");
+            }
+//             for (int i = 0; i < question.size(); i++) {
+             int randomIndex = ran.nextInt(question.size());
+                 String randomElement = question.get(randomIndex);
+                 question.remove(randomIndex);
+                  int id = questionDao.getIdByQuestion(randomElement);
         %>
-        <h2 class="text-left"><%= question%></h2>
+                  <h2 class="text-left"><%= randomElement%></h2>
+                    <input type="hidden" name="randomques" value="<%= randomElement%>">
+                 <%
+        
+//             }
+            listAnswer = questionDao.listAnswer(randomElement);
+        %>
+       
         <form action="CheckResultServlet" method="POST" class="card-body">
             <c:forEach var="Answer" items="<%= listAnswer%>">
                 <input type="checkbox" class="form-check form-check-inline h3" id="myCheck" name="answer" value="${Answer.answer}">
                 <span class="value-check-box">${Answer.answer} </span><br>
             </c:forEach>
-                <input type="hidden" name="questionid" value="<%= randomQuestion %>">
+                <input type="hidden" name="questionid" value="<%= id%>">
                 <button   class="btn btn-success" onclick="myFunction()">Next</button>
         </form>
     </div>

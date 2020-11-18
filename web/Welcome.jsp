@@ -17,7 +17,7 @@
         response.sendRedirect("login.jsp");
     }
 %>
-        <title>Wellcome</title>
+        <title>Welcome</title>
     </head>
     <body>
         <div class="container">
@@ -37,7 +37,7 @@
                             <option>5</option>
                             <option>10</option>
                             <option>15</option>
-                            <option>20</option>
+<!--                            <option>20</option>-->
                         </select>
                     </div>
                     <br>

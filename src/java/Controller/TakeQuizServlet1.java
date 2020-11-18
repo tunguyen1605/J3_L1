@@ -5,23 +5,19 @@
  */
 package Controller;
 
-import ModelDAO.UsersDAO;
-import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class RegisterServlet extends HttpServlet {
+public class TakeQuizServlet1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +31,18 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet TakeQuizServlet1</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet TakeQuizServlet1 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,38 +57,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-       try {
-            processRequest(request, response);
-            String username = request.getParameter("RegisterUsername");
-            String email = request.getParameter("RegisterEmail");
-            String password = request.getParameter("RegisterPassword");
-            int type;
-            if (request.getParameter("RegisterType").equalsIgnoreCase("student")) {
-                type = 1 ;
-            }else
-                type = 2;
-            
-            //-------------- create user object ------------------
-            User us  = new User();
-            us.setuEmail(email);
-            us.setuPassword(password);
-            us.setuUsername(username);
-            us.setuType(type);
-            
-            UsersDAO user = new UsersDAO();
-            if(user.addUser(us)){
-//                request.setAttribute("message", "You signup successfully");
-//                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-                response.sendRedirect("login.jsp");
-          
-            }else {
-                request.setAttribute("message", "Cant't Signup <br/> Email or Username used before .. ");
-                getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -95,8 +71,17 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           
+            int numberQuestion = Integer.parseInt(request.getParameter("numberQuestion"));
         
+         HttpSession session = request.getSession();
+//         session.setAttribute("answerCorrect", 0);
+//         session.setAttribute("numberAnswer", a);
+//         session.setAttribute("numberQuestion",numberQuestion );
+           getServletContext().setAttribute("answerCorrect", 0);
+        getServletContext().setAttribute("numberQuestion",numberQuestion );
+        getServletContext().setAttribute("numberAnswer", 0);
+//         response.sendRedirect("PlayQuiz.jsp");
+         getServletContext().getRequestDispatcher("/PlayQuiz.jsp").forward(request, response);
     }
 
     /**

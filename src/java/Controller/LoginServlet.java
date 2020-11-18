@@ -68,15 +68,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", us);
 //            session.setMaxInactiveInterval(60*15);
             
-               if(us.getuType() == 1){
-                   System.out.println("Teacher");
-                    getServletContext().getRequestDispatcher("/Welcome.jsp").forward(request, response);   //admin
-               }
-                   
-               else {
+            
                    
                    response.sendRedirect("Welcome.jsp");
-               }                  //user
+            
            }
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

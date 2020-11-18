@@ -25,8 +25,8 @@
     </head>
     <body>
         
-        <div class="container-md">
-             <%@include file="header.jsp" %>
+        <div class="container">
+            <%@include file="header.jsp" %>
                 		<!--<div class="card">-->
 			<div class="card-header">
 				<h3>Quiz Manager</h3>
@@ -38,8 +38,8 @@
             %>
             <%
                
-                listQuestion = (ArrayList<Question>) request.getSession().getAttribute("listquestion");
-                countQuestion = (int) request.getSession().getAttribute("numberQuestion");
+                listQuestion = (ArrayList<Question>) request.getSession().getAttribute("listquestion12");
+                countQuestion = (int) request.getSession().getAttribute("numberQuestion12");
             %>
             <div class="content">
                 <h3 class="title-wellcome">Number of question :

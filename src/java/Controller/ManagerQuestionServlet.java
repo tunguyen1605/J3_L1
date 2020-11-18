@@ -7,6 +7,7 @@ package Controller;
 
 import ModelDAO.QuestionDAO;
 import entities.Answer;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -74,8 +75,9 @@ public class ManagerQuestionServlet extends HttpServlet {
         String question = request.getParameter("question");
         QuestionDAO qdao = new QuestionDAO();
         Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
         String strDate = dateFormat.format(date);  
+        System.out.println(strDate);
         int idquestion = qdao.InsertQuestion(question, strDate);
         if (a == 1) {
             listAnswer.add(new Answer(op1, 1, idquestion));

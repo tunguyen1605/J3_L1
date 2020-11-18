@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,7 +59,7 @@ public class TakeQuizServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+      
     }
 
     /**
@@ -72,11 +73,16 @@ public class TakeQuizServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String numberQuestion = request.getParameter("numberQuestion");
-        getServletContext().setAttribute("answerCorrect", 0);
-        getServletContext().setAttribute("numberQuestion", Integer.parseInt(numberQuestion));
+        int numberQuestion = Integer.parseInt(request.getParameter("numberQuestion"));
+        
+         HttpSession session = request.getSession();
+//         session.setAttribute("answerCorrect", 0);
+//         session.setAttribute("numberAnswer", a);
+//         session.setAttribute("numberQuestion",numberQuestion );
+           getServletContext().setAttribute("answerCorrect", 0);
+        getServletContext().setAttribute("numberQuestion",numberQuestion );
         getServletContext().setAttribute("numberAnswer", 0);
-        System.out.println(numberQuestion);
+//         response.sendRedirect("PlayQuiz.jsp");
          getServletContext().getRequestDispatcher("/PlayQuiz.jsp").forward(request, response);
     }
 

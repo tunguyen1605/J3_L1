@@ -7,13 +7,16 @@ package ModelDAO;
 
 import entities.Answer;
 import entities.Question;
+
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,35 +28,43 @@ import java.util.logging.Logger;
 public class QuestionDAO {
      Connection conn; 
     ResultSet rs;
+    DBConnection db;
     public QuestionDAO(){
-       DBConnection db = new  DBConnection();
+        db = new  DBConnection();
       this.conn = db.getConnect();
     }
-    public ArrayList<Question> listQuestion() {
+    public ArrayList<Question> listQuestion() throws ParseException {
         ArrayList<Question> listQuestion = new ArrayList<>();
         try {
             
 //            String sql = "select questionid, question, created from Question where username = '" + username + "'";
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM `question` WHERE 1");    
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM `question` ORDER BY questionid DESC");    
            rs = pst.executeQuery();
             while (rs.next()) {
+        
                 int id = rs.getInt(1);
                 String name = rs.getString(2);
-                Date created = rs.getDate(3);
+                String dat = rs.getString(3);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                Date created =  sdf.parse(dat);  
                 Question question = new Question(id, name, created);
                 listQuestion.add(question);
             }
+          db.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+       
         return listQuestion;
     }
       public int countQuesion() {
+          int count =0;
         try {
            PreparedStatement pst = conn.prepareStatement("SELECT COUNT(*) FROM `question` WHERE 1");    
            rs = pst.executeQuery();
             while (rs.next()) {
-                int count = rs.getInt(1);
+                count = rs.getInt(1);
+                 
                 return count;
             }
         } catch (SQLException ex) {
@@ -61,13 +72,14 @@ public class QuestionDAO {
         }
         return 0;
     }
-    public ArrayList<Answer> listAnswer(int idQuestion) {
+    public ArrayList<Answer> listAnswer(String question) {
         ArrayList<Answer> listAnswer = new ArrayList<>();
+        int id = getIdByQuestion(question);
          int correct;
                  String answer;
         try {
-        PreparedStatement pst = conn.prepareStatement("SELECT * FROM `answer` WHERE questionid = ?");    
-          pst.setInt(1, idQuestion);
+          PreparedStatement pst = conn.prepareStatement("SELECT * FROM `answer` WHERE questionid = ?");    
+          pst.setInt(1, id);
         rs = pst.executeQuery();
             while (rs.next()) {
                 answer = rs.getString(1);
@@ -78,26 +90,29 @@ public class QuestionDAO {
 //                else{
 //                     correct = false;
 //                }
-                Answer newAnswer = new Answer(answer, correct, idQuestion);
+                Answer newAnswer = new Answer(answer, correct, id);
                 listAnswer.add(newAnswer);
             }
+          
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+     
         return listAnswer;
+    
     }
 
-    public String getQuestionById(int idQuestion) {
-        String question = null;
+    public ArrayList<String> getQuestionById() {
+        ArrayList<String> listQuestion = new ArrayList<>();
         try {
            
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM `question` WHERE questionid = ?");
-            pst.setInt(1,idQuestion);
+            PreparedStatement pst = conn.prepareStatement("SELECT `question` FROM `question` WHERE 1");
             rs = pst.executeQuery();
             while (rs.next()) {
-                question = rs.getString(2);
+                listQuestion.add(rs.getString("question"));
             }
-            return question;
+    
+            return listQuestion;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -113,6 +128,7 @@ public class QuestionDAO {
             while (rs.next()) {
                 idquestion = rs.getInt(1);
             }
+          
             return idquestion;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -130,6 +146,7 @@ public class QuestionDAO {
                 pst.setInt(3, answer.getQuestionid());
                 pst.executeUpdate();
                         }
+                 
                   return true;
             } catch (SQLException ex) {
                 Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,30 +156,27 @@ public class QuestionDAO {
     }
     
     public String getCorrectAnswer(int questionid) {
-        try {
             try {
                 String sql = "select answer from Answer where questionid = '" + questionid + "' and correct = '1'";
                 PreparedStatement pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
                 while (rs.next()) {
                     String answerCorrect = rs.getString(1);
-                    conn.close();
+                
                     return answerCorrect;
                     
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            conn.close();
+        
        
-        } catch (SQLException ex) {
-             Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
              return null;
     }
     public  int InsertQuestion(String Question , String datecreated){
         
-         try {
+
              
              try {
                  PreparedStatement pst = conn.prepareStatement("INSERT INTO `question`(`question`, `created`) VALUES (?,?)");
@@ -176,12 +190,14 @@ public class QuestionDAO {
              } catch (SQLException ex) {
                  Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
+     
+          return 0;
+    }
+    public void closedb(){
+         try {
              conn.close();
-            
          } catch (SQLException ex) {
              Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
          }
-          return 0;
     }
-
 }

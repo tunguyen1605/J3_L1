@@ -29,9 +29,11 @@ public class UsersDAO {
 //           pst.setString(2, Pass);
            rs = pst.executeQuery();
             
-         if(rs.next()){            
+         if(rs.next()){
+         
          return  true;
         }
+         conn.close();
         return false;
     }
     public User signIn(String username, String password) {
@@ -47,10 +49,19 @@ public class UsersDAO {
                 ResultSet rs = pst.executeQuery();
                 if (rs.next()) {                      
                 userSinIn = new User(rs.getString("uUsername"),rs.getString("uPassword"),rs.getString("uEmail"), rs.getInt("uType"));
+                }else{
+                    userSinIn = null;
+                    conn.close();
+                    return userSinIn;
                 }
                 
                 System.out.println(userSinIn);
+                conn.close();
                 return userSinIn;
+            }
+            else{
+                 conn.close();
+                return  null;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -68,6 +79,7 @@ public class UsersDAO {
                 pst.setInt(4, uss.getuType());
                 pst.executeUpdate();
                 b = true;
+                conn.close();
          }else{
              return b;
          }

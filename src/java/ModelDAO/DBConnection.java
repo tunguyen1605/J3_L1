@@ -39,4 +39,11 @@ public class DBConnection {
     public com.mysql.jdbc.Connection getConnect() {
         return conn;
     }
+    public void close(){
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -11,7 +11,10 @@ import entities.Question;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,17 +67,21 @@ public class ShowQuestion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession s = request.getSession(false);
+         HttpSession s = request.getSession();
              User us = (User)s.getAttribute("user");
              if (us.getuType() != 1 ) {
         ArrayList<Question> listquestion = new ArrayList<>();
         QuestionDAO qdao = new QuestionDAO();
-        int numberQuestion =0;
-        listquestion = qdao.listQuestion();
-        numberQuestion = qdao.countQuesion();
+       
+             try {
+                 listquestion = qdao.listQuestion();
+             } catch (ParseException ex) {
+                 Logger.getLogger(ShowQuestion.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         int numberQuestion1 = listquestion.size();
         HttpSession session = request.getSession();
-        session.setAttribute("listquestion", listquestion);
-        session.setAttribute("numberQuestion", numberQuestion);
+        session.setAttribute("listquestion12", listquestion);
+        session.setAttribute("numberQuestion12", numberQuestion1);
          getServletContext().getRequestDispatcher("/ShowQuiz.jsp").forward(request, response);   //admin
         }
              else{

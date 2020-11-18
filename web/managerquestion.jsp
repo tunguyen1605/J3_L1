@@ -15,6 +15,7 @@
         <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
         <script type="text/javascript">
+            var  ischeck = false;
             function ValidatePetSelection()
             {
                 var checkboxes = document.getElementsByName("correct");
@@ -30,8 +31,38 @@
                     return false;
                 }
             }
-        </script>
-        <script type="text/javascript">
+        
+            
+        function Validate() {
+        var op1 = document.getElementById("option1").value;
+        var op2 = document.getElementById("option2").value;
+        var op3 = document.getElementById("option3").value;
+        var op4 = document.getElementById("option4").value;
+        if (op1 == op2 || op1== op3 || op1== op4) {
+            alert("Not required or Duplicate orther answer");
+            return false;
+        } else if (op2 == op1 || op2== op3 || op2== op4) {
+             alert("Not required or Duplicate orther answer");
+            return false;
+        }else if (op3 == op1 || op3== op2 || op3== op4) {
+             alert("Not required or Duplicate orther answer");
+            return false;
+        }
+        else if(op4 == op2 || op4== op3 || op4== op1) {
+             alert("Not required or Duplicate orther answer");
+            return false;
+        }
+        else{
+            return true;
+        }
+        
+    }
+//        if (results == null) {
+//    return  ischeck = true;
+//} else{
+//     return  ischeck = false;
+//}
+  
             jQuery(function ($) {
                 var requiredCheckboxes = $(':checkbox[required]');
                 requiredCheckboxes.on('change', function (e) {
@@ -41,6 +72,19 @@
                 });
                 requiredCheckboxes.trigger('change');
             });
+//             $(document).ready(function () {
+//               $("#confirm").keyup(checkPasswordMatch);
+//               $("#website").keyup(checkUrl);
+//               $("#userID").keyup(checkUserId);
+//               $("#email").keyup(checkEmail);
+//            });
+//              $(function () {
+//                $('#add').click(function () {
+//                    if(!ischeck) {
+//                        return false;
+//                    }
+//                })
+//            })
         </script>
         <%
             if (session.getAttribute("user") != null) {
@@ -71,7 +115,7 @@
                                 <p>Option1: </p>
                             </div>
                             <div class="table-cell">
-                                <textarea  class="md-textarea form-control" rows="3" name="option1" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
+                                <textarea  class="md-textarea form-control" rows="3" id="option1" name="option1" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                             </div>
                         </div>
 
@@ -82,15 +126,16 @@
                                 <p>Option2: </p>
                             </div>
                             <div class="table-cell">
-                                <textarea  class="md-textarea form-control" name="option2" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
+                                <textarea  class="md-textarea form-control" id="option2" name="option2" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                             </div>
+                            
                         </div>
                         <div class="table-row">
                             <div class="table-cell cell-manager">
                                 <p>Option3: </p>
                             </div>
                             <div class="table-cell">
-                                <textarea class="md-textarea form-control" name="option3" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
+                                <textarea class="md-textarea form-control"  id="option3" name="option3" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                             </div>
                         </div>
                         <div class="table-row">
@@ -98,9 +143,11 @@
                                 <p>Option4: </p>
                             </div>
                             <div class="table-cell">
-                                <textarea class="md-textarea form-control" name="option4" class="question" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
+                                <textarea class="md-textarea form-control" id="option4" name="option4" class="question" cols="60" rows="3" placeholder="Answer" required="required"></textarea>
                             </div>
                         </div>
+                        <br>
+                        <span id="message"></span>
                         <div class="table-row">
                             <div class="table-cell cell-manager">
                                 <p>Answers(s): </p>
@@ -125,7 +172,7 @@
                                 <div class="table-cell cell-manager">
                                 </div>
                                 <div class="table-cell">
-                                    <input class="btn btn-success"type="submit" value="save">
+                                    <input class="btn btn-success"type="submit" value="save" id="add" onclick="return  Validate()">
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,8 @@
 <link href="bootstrap-4.5.2-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:if test="${!empty user}">
-    <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark justify-content-center">
        <!-- Links -->
        <ul class="navbar-nav">
               <li class="nav-item">
@@ -27,4 +28,6 @@
             </c:if>
            </ul>
 </nav>
+    </div>
+    
 </c:if>
