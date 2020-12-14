@@ -72,7 +72,6 @@ public class ShowQuestion extends HttpServlet {
              if (us.getuType() != 1 ) {
         ArrayList<Question> listquestion = new ArrayList<>();
         QuestionDAO qdao = new QuestionDAO();
-       
              try {
                  listquestion = qdao.listQuestion();
              } catch (ParseException ex) {

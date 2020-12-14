@@ -21,7 +21,7 @@
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>-->
         
         <title>Login</title>
-        <script text="text/javascript">
+<!--        <script text="text/javascript">
             // check validation
             $(document).ready(function () {
                 $("#form").validate({
@@ -87,7 +87,7 @@
 
 
             });
-        </script>
+        </script>-->
     </head>
     <div class="text-danger"></div>
     <body>

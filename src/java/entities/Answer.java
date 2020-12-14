@@ -1,9 +1,5 @@
 package entities;
 
-/**
- *
- * @author Thaycacac
- */
 public class Answer {
 
     public Answer(String answer, int correct, int questionid) {

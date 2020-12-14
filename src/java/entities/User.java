@@ -5,10 +5,7 @@
  */
 package entities;
 
-/**
- *
- * @author Admin
- */
+
 public class User {
 
     public User() {

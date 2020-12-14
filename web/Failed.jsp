@@ -1,9 +1,3 @@
-<%-- 
-    Document   : LoginFailed
-    Created on : July 15, 2020, 11:25:56 AM
-    Author     : tú
---%>
-
     <%@include file="header.jsp" %>
 
     <section id="form"><!--form-->

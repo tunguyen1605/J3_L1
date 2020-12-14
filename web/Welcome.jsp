@@ -10,13 +10,13 @@
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
         <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-      <%
-    if (session.getAttribute("user") != null) {
-        
-    } else {
-        response.sendRedirect("login.jsp");
-    }
-%>
+        <%
+            if (session.getAttribute("user") != null) {
+
+            } else {
+                response.sendRedirect("login.jsp");
+            }
+        %>
         <title>Welcome</title>
     </head>
     <body>
@@ -30,15 +30,12 @@
                     <span class="animated ">${sessionScope.user.getuUsername()}</span>
                 </h2>
                 <form action="TakeQuizServlet" method="POST">
-
                     <div class="form-group">
                         <label for="exampleSelect1" class="bmd-label-floating">Choose number of question</label>
-                        <select class="form-control" id="exampleSelect1" name="numberQuestion">
-                            <option>5</option>
-                            <option>10</option>
-                            <option>15</option>
-<!--                            <option>20</option>-->
-                        </select>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" placeholder="Enter Number Question" name="numberQuestion">
+                        </div>
+
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success">Start</button>

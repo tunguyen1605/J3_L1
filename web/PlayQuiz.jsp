@@ -30,7 +30,6 @@
                     <!--BUG-->
                     <span class="animated ">${sessionScope.user.getuUsername()}</span>
                 </h2>
-<!--        <h3 class="time text-left" >Time remaining <span>10:03</span></h3>-->
         <%!
             ArrayList<String> question;
             ArrayList<Answer> listAnswer;

@@ -27,13 +27,11 @@ public class UsersDAO {
         PreparedStatement pst = conn.prepareStatement("SELECT * FROM `user` WHERE uUsername = ?");
            pst.setString(1, user);
 //           pst.setString(2, Pass);
-           rs = pst.executeQuery();
-            
+           rs = pst.executeQuery();       
          if(rs.next()){
-         
          return  true;
         }
-         conn.close();
+      
         return false;
     }
     public User signIn(String username, String password) {

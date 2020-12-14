@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import ModelDAO.QuestionDAO;
+import entities.Question;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +43,7 @@ public class TakeQuizServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet TakeQuizServlet</title>");            
+            out.println("<title>Servlet TakeQuizServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet TakeQuizServlet at " + request.getContextPath() + "</h1>");
@@ -59,7 +64,7 @@ public class TakeQuizServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
     /**
@@ -73,17 +78,34 @@ public class TakeQuizServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int numberQuestion = Integer.parseInt(request.getParameter("numberQuestion"));
-        
-         HttpSession session = request.getSession();
+        try {
+            int numberQuestion = Integer.parseInt(request.getParameter("numberQuestion"));
+            ArrayList<Question> listquestion = new ArrayList<>();
+            QuestionDAO qdao = new QuestionDAO();
+            listquestion = qdao.listQuestion();
+            int numberQuest = listquestion.size();
+            if (numberQuestion > numberQuest || numberQuestion < 0 || numberQuestion == 0) {
+                request.setAttribute("message", "can't Play We have" + numberQuest + " Question");
+                getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
+            } else {
+                HttpSession session = request.getSession();
 //         session.setAttribute("answerCorrect", 0);
 //         session.setAttribute("numberAnswer", a);
 //         session.setAttribute("numberQuestion",numberQuestion );
-           getServletContext().setAttribute("answerCorrect", 0);
-        getServletContext().setAttribute("numberQuestion",numberQuestion );
-        getServletContext().setAttribute("numberAnswer", 0);
+                getServletContext().setAttribute("answerCorrect", 0);
+                getServletContext().setAttribute("numberQuestion", numberQuestion);
+                getServletContext().setAttribute("numberAnswer", 0);
 //         response.sendRedirect("PlayQuiz.jsp");
-         getServletContext().getRequestDispatcher("/PlayQuiz.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/PlayQuiz.jsp").forward(request, response);
+            }
+
+        } catch (Exception ex) {
+//            request.setAttribute("message", "can't Play Wrong Input ");
+//            getServletContext().getRequestDispatcher("/Failed.jsp").forward(request, response);
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
     }
 
     /**

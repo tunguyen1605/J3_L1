@@ -67,10 +67,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", us);
 //            session.setMaxInactiveInterval(60*15);
-            
-            
-                   
-                   response.sendRedirect("Welcome.jsp");
+             response.sendRedirect("Welcome.jsp");
             
            }
         } catch (SQLException ex) {

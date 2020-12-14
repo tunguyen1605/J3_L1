@@ -54,6 +54,7 @@ public class CheckResultServlet extends HttpServlet {
             NumberFormat formatter = new DecimalFormat("#0.00"); 
             getServletContext().setAttribute("result", formatter.format(result));
             questionDAO.closedb();
+            
             }
             request.getRequestDispatcher("result.jsp").forward(request, response);
         }

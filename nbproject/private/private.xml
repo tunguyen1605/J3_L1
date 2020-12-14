@@ -32,13 +32,13 @@
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/managerquestion.jsp</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/ShowQuiz.jsp</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/Welcome.jsp</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/ModelDAO/DBConnection.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/Controller/ManagerQuestionServlet.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/Controller/ShowQuestion.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/entities/Question.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/Failed.jsp</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/Controller/CheckResultServlet.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/Register.jsp</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/build/generated/src/org/apache/jsp/PlayQuiz_jsp.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/ModelDAO/QuestionDAO.java</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/web/PlayQuiz.jsp</file>
             <file>file:/C:/Users/Admin/Documents/NetBeansProjects/J3_L1/src/java/entities/Answer.java</file>
